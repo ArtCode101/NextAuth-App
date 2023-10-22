@@ -2,6 +2,7 @@
 
 import axios from "axios"
 import { useState } from "react"
+import toast from "react-hot-toast"
 export default function Register() {
     const [data,setData] = useState({
         name: '',
@@ -13,8 +14,8 @@ export default function Register() {
         e.preventDefault()
         
         axios.post('/api/register',data)
-        .then(()=>alert('User has been registered!'))
-        .catch((e)=>alert('An error occured!'))
+        .then(()=> toast.success('User has been registered!'))
+        .catch((e)=> toast.error('An error occured!'))
     }
     return (
       <>

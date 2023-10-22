@@ -2,6 +2,7 @@
 
 import { signIn } from "next-auth/react"
 import { useState } from "react"
+import toast from "react-hot-toast"
 
 
 export default function Example() {
@@ -17,8 +18,15 @@ export default function Example() {
             ...data,
             redirect: false,
         })
-        .then(()=>{
-            alert('User has been logged in!')
+        .then((callback)=>{
+            if (callback?.error){
+              toast.error(callback.error)
+            }
+
+            if(callback?.ok && !callback?.error){
+              toast.success('Logged in successfully!')
+            }
+            // toast.success('User has been logged in!')
         })
     }
 
@@ -90,6 +98,8 @@ export default function Example() {
                 </button>
               </div>
             </form>
+            <h1>Sign into Github below</h1>
+            <button onClick={()=>{signIn('github')}} className="bg-black text-white w-full">Sign In</button>
   
             <p className="mt-10 text-center text-sm text-gray-500">
               Not a member?{' '}
