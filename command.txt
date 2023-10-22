@@ -1,0 +1,13 @@
+npm run dev
+npm i -D prisma
+npx prisma init
+
+docker run --name mymongo -e MONGO_INITDB_ROOT_USERNAME=root -e MONGO_INITDB_ROOT_PASSWORD=root -e MONGO_INITDB_DATABASE=art -p 27017:27017 -d mongo:latest
+
+npm i @prisma/client
+npm i next-auth@latest @next-auth/prisma-adapter
+npm i @tailwindcss/forms
+npm i axios
+npm i bcrypt
+
+npx prisma db push
